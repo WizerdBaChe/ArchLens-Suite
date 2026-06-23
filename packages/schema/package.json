@@ -1,0 +1,17 @@
+{
+  "name": "@archlens/schema",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ArchLens 系列共用 JSON 交換信封（tree/graph/diff/docsgap）的單一事實來源",
+  "type": "module",
+  "main": "archlens-schema.ts",
+  "types": "archlens-schema.ts",
+  "files": [
+    "archlens-schema.ts",
+    "tree.schema.json"
+  ],
+  "exports": {
+    ".": "./archlens-schema.ts",
+    "./tree.schema.json": "./tree.schema.json"
+  }
+}

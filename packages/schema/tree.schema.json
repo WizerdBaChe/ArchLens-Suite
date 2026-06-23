@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://archlens.dev/schemas/tree.schema.json",
+  "title": "ArchLens tree envelope",
+  "description": "系列共用信封，kind=tree。Web 產生，diff/dependency/docsgap 消費。單一事實來源見 packages/schema/archlens-schema.ts。",
+  "type": "object",
+  "required": ["archlens", "kind", "payload"],
+  "additionalProperties": true,
+  "properties": {
+    "archlens": {
+      "type": "string",
+      "description": "信封版本",
+      "const": "1.0"
+    },
+    "kind": {
+      "type": "string",
+      "const": "tree"
+    },
+    "source": {
+      "type": "object",
+      "description": "選填來源中繼資料",
+      "additionalProperties": true,
+      "properties": {
+        "product": { "type": "string" },
+        "generatedAt": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "required": ["nodes"],
+      "additionalProperties": false,
+      "properties": {
+        "root": { "type": "string" },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "type"],
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "forward-slash, 相對根目錄, 無前導/尾隨斜線"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["file", "dir"]
+              },
+              "contentHash": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
