@@ -1,0 +1,13 @@
+# The four product repos are independent git repositories nested inside this
+# hub/meta repo. They keep their own .git and their own GitHub remotes; this hub
+# must NOT track their files (otherwise git treats them as embedded repos).
+# Add one line per product when a new product joins the series.
+ArchLens-Web/
+ArchLens-DependencyTeller/
+ArchLens-DiffTeller/
+ArchLens-DocsGapTeller/
+
+# Node / build artifacts for the hub's own packages and portal
+node_modules/
+dist/
+*.log

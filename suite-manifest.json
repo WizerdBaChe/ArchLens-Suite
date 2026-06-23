@@ -1,0 +1,71 @@
+{
+  "suite": "ArchLens",
+  "mission": "減少工程師維護專案的困難，並排除與 AI 協作時的障礙 / Reduce the friction of maintaining projects and collaborating with AI.",
+  "schemaVersion": "1.0",
+  "envelopeVersion": "1.0",
+  "stages": ["understand", "analyze", "compare", "verify"],
+  "products": [
+    {
+      "id": "web",
+      "name": "ArchLens Web",
+      "dir": "ArchLens-Web",
+      "stage": "understand",
+      "repo": "https://github.com/WizerdBaChe/ArchLens-Web",
+      "url": "https://wizerdbache.github.io/ArchLens-Web/",
+      "tagline": "一眼看出專案結構 / See a project's structure at a glance",
+      "solves": ["structure-overview", "ai-context-export"],
+      "consumes": [],
+      "produces": ["tree"]
+    },
+    {
+      "id": "dependency",
+      "name": "ArchLens Dependency",
+      "dir": "ArchLens-DependencyTeller",
+      "stage": "analyze",
+      "repo": "https://github.com/WizerdBaChe/ArchLens-DependencyTeller",
+      "url": "https://wizerdbache.github.io/ArchLens-DependencyTeller/",
+      "tagline": "互動依賴圖與耦合分析 / Interactive dependency graph & coupling analysis",
+      "solves": ["coupling", "circular-deps", "cross-tier", "impact-analysis"],
+      "consumes": ["tree"],
+      "produces": ["graph"]
+    },
+    {
+      "id": "diff",
+      "name": "ArchLens Diff",
+      "dir": "ArchLens-DiffTeller",
+      "stage": "compare",
+      "repo": "https://github.com/WizerdBaChe/ArchLens-DiffTeller",
+      "url": "https://wizerdbache.github.io/ArchLens-DiffTeller/",
+      "tagline": "專案樹的結構差異 / Structural diff of project trees",
+      "solves": ["structural-change", "moved-renamed"],
+      "consumes": ["tree"],
+      "produces": ["diff"]
+    },
+    {
+      "id": "docsgap",
+      "name": "ArchLens DocsGap",
+      "dir": "ArchLens-DocsGapTeller",
+      "stage": "verify",
+      "repo": "https://github.com/WizerdBaChe/ArchLens-DocsGapTeller",
+      "url": "https://wizerdbache.github.io/ArchLens-DocsGapTeller/",
+      "tagline": "找出文件與程式碼的落差 / Find the gap between docs and code",
+      "solves": ["doc-drift", "dead-links", "stale-commands", "uncovered-folders"],
+      "consumes": ["tree"],
+      "produces": ["docsgap"]
+    }
+  ],
+  "painPointIndex": {
+    "structure-overview": "web",
+    "ai-context-export": "web",
+    "coupling": "dependency",
+    "circular-deps": "dependency",
+    "cross-tier": "dependency",
+    "impact-analysis": "dependency",
+    "structural-change": "diff",
+    "moved-renamed": "diff",
+    "doc-drift": "docsgap",
+    "dead-links": "docsgap",
+    "stale-commands": "docsgap",
+    "uncovered-folders": "docsgap"
+  }
+}
