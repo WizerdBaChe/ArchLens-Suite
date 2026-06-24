@@ -125,3 +125,13 @@
 | **新產品起手式模板** | [`docs/new-product-starter/`](./new-product-starter/) |
 
 > 一句話總結：**先把「共用的」定義成契約，產品消費契約而生。** 這就是把「做完才修」變成「一開始就對」。
+
+---
+
+## 7. 這份方法論也是一個全域 skill
+
+本手冊的可遷移部分已濃縮成一個 **條件觸發** 的全域 skill：`design-system-suite`
+（`~/.claude/skills/design-system-suite/SKILL.md`）。它只在「**新增產品到既有套件**」或
+「**把多個前端整併成共用設計系統 / 資料契約 / 反孤島導覽**」時才被叫用，且該 skill 反過來
+**reference 本 repo 的這份手冊與 `new-product-starter/` 作為維護中的範本**。一般單一 app /
+改 bug / 後端工作不會觸發它。
