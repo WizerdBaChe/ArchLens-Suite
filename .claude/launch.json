@@ -6,6 +6,30 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["--yes", "serve", "-l", "4178", "."],
       "port": 4178
+    },
+    {
+      "name": "web-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "ArchLens-Web", "run", "dev", "--", "--port", "4179", "--strictPort"],
+      "port": 4179
+    },
+    {
+      "name": "docsgap-dist",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "-l", "4180", "ArchLens-DocsGapTeller/web/dist"],
+      "port": 4180
+    },
+    {
+      "name": "dep-dist",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "-l", "4181", "ArchLens-DependencyTeller/packages/web/dist"],
+      "port": 4181
+    },
+    {
+      "name": "docsgap-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "ArchLens-DocsGapTeller", "run", "dev:web", "--", "--port", "4184", "--strictPort"],
+      "port": 4184
     }
   ]
 }
