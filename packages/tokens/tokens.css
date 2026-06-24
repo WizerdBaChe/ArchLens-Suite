@@ -59,6 +59,7 @@
        --al-bg              頁面底
        --al-surface         面板 / 卡片
        --al-surface-raised  比 surface 再高一階
+       --al-surface-sunken  凹陷區（輸入井 / 捲軸槽）
        --al-border          髮絲分隔線
        --al-text            主要文字
        --al-text-secondary  次要文字
@@ -71,6 +72,7 @@
   --al-bg: #0d1320;
   --al-surface: #121a2b;
   --al-surface-raised: #182234;
+  --al-surface-sunken: #0a1018;
   --al-border: #24314a;
   --al-text: #e8edf7;
   --al-text-secondary: #a6b4d6;
@@ -95,6 +97,7 @@
   --al-bg: #f5f4f0;
   --al-surface: #ffffff;
   --al-surface-raised: #ffffff;
+  --al-surface-sunken: #ebe9e2;
   --al-border: #e5e3dc;
   --al-text: #1a1a1a;
   --al-text-secondary: #475569;
@@ -113,6 +116,7 @@
   --al-bg: #0f2e42;
   --al-surface: #143a52;
   --al-surface-raised: #1a4763;
+  --al-surface-sunken: #0a2233;
   --al-border: rgba(220, 238, 245, 0.16);
   --al-text: #dceef5;
   --al-text-secondary: rgba(220, 238, 245, 0.62);
@@ -131,6 +135,7 @@
   --al-bg: #0d0d0f;
   --al-surface: #141417;
   --al-surface-raised: #1a1a1f;
+  --al-surface-sunken: #08080a;
   --al-border: #2a2a30;
   --al-text: #e6e6ea;
   --al-text-secondary: #8a8a96;
