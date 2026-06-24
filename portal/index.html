@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" class="al-theme-hacker">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,23 +9,27 @@
     單一靜態頁，於執行時 fetch ../suite-manifest.json（系列單一事實來源），
     渲染 workflow pipeline + 產品卡 + 資料流。新增產品 = 只改 manifest，這頁自動更新。
     純瀏覽器端、無 build、無後端。需以 http(s) 提供（file:// 下 fetch 會被擋）。
+    採用 @archlens/tokens（Phase 4）：色票來自掛在 <html> 的 .al-theme-hacker 主題包，
+    本頁的區域變數僅別名到 --al-*，故結構/顏色都與系列共用契約一致。
   -->
+  <link rel="stylesheet" href="../packages/tokens/tokens.css" />
   <style>
+    /* 區域變數別名到系列共用 token（--al-*）；workflow 階段色為 portal 專屬，保留本地。 */
     :root {
-      --bg: #0d0d0f;
-      --panel: #141417;
-      --panel-2: #1a1a1f;
-      --border: #2a2a30;
-      --text: #e6e6ea;
-      --dim: #8a8a96;
-      --accent: #39ff6a;
+      --bg: var(--al-bg);
+      --panel: var(--al-surface);
+      --panel-2: var(--al-surface-raised);
+      --border: var(--al-border);
+      --text: var(--al-text);
+      --dim: var(--al-text-secondary);
+      --accent: var(--al-accent);
       --accent-dim: #1a3d25;
       --understand: #39ff6a;
       --analyze: #4aa8ff;
       --compare: #ffb84a;
       --verify: #c77dff;
-      --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
-      --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --mono: var(--al-font-mono);
+      --sans: var(--al-font-body);
     }
     * { box-sizing: border-box; }
     body {
