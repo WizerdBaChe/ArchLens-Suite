@@ -63,18 +63,34 @@ export interface ArchlensEnvelope<K extends ArchlensKind = ArchlensKind, P = unk
 /** `kind: "tree"` 的具體信封型別。 */
 export type TreeEnvelope = ArchlensEnvelope<"tree", TreePayload>;
 
+/**
+ * `graph` / `docsgap` 目前不在此處定義具體 payload 型別 —— 各產品的 payload 形狀
+ * 就是它原本的匯出 JSON。用泛型信封承載即可，待形狀穩定再回頭補強型別。
+ */
+export type GraphEnvelope = ArchlensEnvelope<"graph">;
+export type DocsgapEnvelope = ArchlensEnvelope<"docsgap">;
+
+/** 把任意 payload 包進系列共用信封（通用底層；各產品的匯出端用這個）。 */
+export function wrap<K extends ArchlensKind, P>(
+  kind: K,
+  payload: P,
+  source?: ArchlensSource,
+): ArchlensEnvelope<K, P> {
+  return {
+    archlens: ARCHLENS_ENVELOPE_VERSION,
+    kind,
+    ...(source ? { source } : {}),
+    payload,
+  };
+}
+
 /** 把一組 tree 節點包進系列共用信封。 */
 export function wrapTree(
   nodes: TreeNode[],
   source?: ArchlensSource,
   root?: string,
 ): TreeEnvelope {
-  return {
-    archlens: ARCHLENS_ENVELOPE_VERSION,
-    kind: "tree",
-    ...(source ? { source } : {}),
-    payload: root ? { root, nodes } : { nodes },
-  };
+  return wrap("tree", root ? { root, nodes } : { nodes }, source);
 }
 
 /** 是否為一個 ArchLens 信封（不檢查 kind/payload 細節）。 */
