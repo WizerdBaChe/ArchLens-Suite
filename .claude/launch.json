@@ -36,6 +36,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "ArchLens-DiffTeller", "run", "dev", "--", "--port", "4185", "--strictPort"],
       "port": 4185
+    },
+    {
+      "name": "dep-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "ArchLens-DependencyTeller/packages/web", "run", "dev", "--", "--port", "4186", "--strictPort"],
+      "port": 4186
     }
   ]
 }
