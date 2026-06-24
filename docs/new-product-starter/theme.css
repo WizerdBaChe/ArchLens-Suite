@@ -1,0 +1,94 @@
+/*
+ * theme.css — 產品的「token 採用層」模板。
+ *
+ * 心法：結構共用、顏色走主題包。
+ *   1) 把產品的在地變數「別名」到系列共用角色 --al-*（值會隨 .al-theme-* 切換）。
+ *   2) 產品專屬語意色（領域色）留在地，並在各主題包下覆寫以維持可讀性。
+ *   3) 元件 CSS 一律用 var(--…)，永遠不寫死 hex。
+ *
+ * 需先載入 @archlens/tokens 的 tokens.css（定義 --al-* 與 .al-theme-* 主題包）。
+ */
+
+:root {
+  /* ---- 一般角色：別名到共用 token（零視覺成本接上系統） ---- */
+  --surface: var(--al-surface);
+  --surface-raised: var(--al-surface-raised);
+  --text: var(--al-text);
+  --text-dim: var(--al-text-secondary);
+  --border: var(--al-border);
+  --accent: var(--al-accent);
+  --accent-contrast: var(--al-accent-contrast);
+
+  /* ---- 結構：直接用共用值（節奏全系列一致） ---- */
+  --space: var(--al-space-4);
+  --radius: var(--al-radius-md);
+
+  /* ---- 字體 / 圓角 / 產品專屬語意色：留在地 ----
+     範例：假設本產品有「命中 / 缺漏」兩種領域語意色，預設＝深色主題用值。 */
+  --hit: #3dd9b4;
+  --miss: #ff6b5b;
+}
+
+/* 產品專屬語意色的各主題覆寫——light 是預設，務必在白底可讀 */
+.al-theme-light {
+  --hit: #0d9488;
+  --miss: #c0392b;
+}
+.al-theme-hacker {
+  --hit: #39ff6a;
+  --miss: #ff7a6b;
+}
+
+/* ---- 元件：只用 var()，不寫死 hex ---- */
+body {
+  margin: 0;
+  background: var(--al-bg);
+  color: var(--text);
+  font-family: var(--al-font-body);
+  line-height: var(--al-leading-normal);
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--al-space-3) var(--al-space-5);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.brand {
+  font-family: var(--al-font-display);
+  font-weight: var(--al-weight-bold);
+}
+.topbar-actions { display: flex; align-items: center; gap: var(--al-space-3); }
+.content { padding: var(--al-space-6); }
+.muted { color: var(--text-dim); }
+.btn {
+  font-family: var(--al-font-mono);
+  padding: var(--al-space-2) var(--al-space-4);
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  cursor: pointer;
+}
+
+/* 主題切換器（segmented control）—— 與系列各產品一致的樣式 */
+.theme-switch {
+  display: inline-flex;
+  border: 1px solid var(--al-border);
+  border-radius: var(--al-radius-md);
+  overflow: hidden;
+  background: var(--al-surface);
+}
+.theme-switch__btn {
+  font-family: var(--al-font-mono);
+  font-size: 11px;
+  padding: 6px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--al-text-secondary);
+  cursor: pointer;
+}
+.theme-switch__btn + .theme-switch__btn { border-left: 1px solid var(--al-border); }
+.theme-switch__btn:hover { color: var(--al-text); }
+.theme-switch__btn.is-active { background: var(--al-accent); color: var(--al-accent-contrast); }

@@ -1,0 +1,47 @@
+<!doctype html>
+<!--
+  新 ArchLens 產品外殼模板。重點：
+  1. <html class="al-theme-light"> —— 系列預設主題（靜態掛、不存檔、無閃爍）。
+  2. 引 @archlens/tokens 的 tokens.css（提供 --al-* 結構 token + 主題包）。
+  3. 引產品自己的 theme.css（把在地變數別名到 --al-*）。
+  4. 掛 <suite-nav>（反孤島導覽，吃 manifest-url）。
+  5. 掛主題切換器容器 + theme-switch.ts。
+  把 myproduct 換成你的產品 id（需與 suite-manifest.json 一致）。
+-->
+<html lang="zh-Hant" class="al-theme-light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ArchLens MyProduct</title>
+  <!-- pre-paint 底色對齊 Light，避免載入閃爍 -->
+  <style>html { background: #f5f4f0; }</style>
+  <!-- 系列共用設計 token（依你的 vendor / 套件路徑調整） -->
+  <link rel="stylesheet" href="../../packages/tokens/tokens.css" />
+  <!-- 產品自己的 token 採用層 -->
+  <link rel="stylesheet" href="./theme.css" />
+</head>
+<body>
+  <!-- 反孤島導覽列（自我隔離、吃 --al-*、疊在頁面之上） -->
+  <script type="module" src="/suite-nav.js"></script>
+  <suite-nav
+    current="myproduct"
+    manifest-url="https://wizerdbache.github.io/ArchLens-Suite/suite-manifest.json"
+  ></suite-nav>
+
+  <header class="topbar">
+    <span class="brand">ArchLens · MyProduct</span>
+    <div class="topbar-actions">
+      <!-- 主題切換器掛載點 -->
+      <div class="theme-switch" id="themeSwitch" role="group" aria-label="Theme"></div>
+    </div>
+  </header>
+
+  <main class="content">
+    <h1>用 var(--al-*) 上色，不要寫死 hex。</h1>
+    <p class="muted">切換上方主題，整頁顏色一起換；預設 Light、每次載入重置（不存檔）。</p>
+    <button class="btn">範例按鈕（用 --al-accent）</button>
+  </main>
+
+  <script type="module" src="./theme-switch.ts"></script>
+</body>
+</html>
