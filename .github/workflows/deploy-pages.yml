@@ -1,0 +1,39 @@
+name: Deploy portal to Pages
+
+# Hub 是純靜態站（portal + manifest + 共用 packages），無 build。
+# 推上 main 就把 repo 根目錄整包部署到 GitHub Pages。
+# 四個產品資料夾被 .gitignore 排除、不在 checkout 內，故不會被一起上傳。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時間只跑一個部署，不取消進行中的，避免半途切斷
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact (repo root)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
