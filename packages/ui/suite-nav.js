@@ -108,7 +108,7 @@ class SuiteNav extends HTMLElement {
       <style>
         /* position+z-index：把導覽列疊在宿主頁的固定裝飾層（如漸層 vignette）之上，
            避免被遮罩。顏色用 @archlens/tokens 的 --al-*（會穿透 Shadow DOM），
-           無 token 的宿主則退回深色 fallback。預設 Light 時就是淺底＋近黑字。 */
+           跟著宿主掛的主題包走（系列預設＝Blueprint）；無 token 的宿主退回深色 fallback。 */
         :host { all: initial; display: block; position: relative; z-index: 100; }
         .bar {
           box-sizing: border-box; width: 100%;

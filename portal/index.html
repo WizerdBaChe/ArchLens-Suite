@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant" class="al-theme-hacker">
+<html lang="zh-Hant" class="al-theme-blueprint">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,13 +9,22 @@
     單一靜態頁，於執行時 fetch ../suite-manifest.json（系列單一事實來源），
     渲染 workflow pipeline + 產品卡 + 資料流。新增產品 = 只改 manifest，這頁自動更新。
     純瀏覽器端、無 build、無後端。需以 http(s) 提供（file:// 下 fetch 會被擋）。
-    採用 @archlens/tokens（Phase 4）：色票來自掛在 <html> 的 .al-theme-hacker 主題包，
+    採用 @archlens/tokens（Phase 4）：色票來自掛在 <html> 的 .al-theme-blueprint 主題包，
     本頁的區域變數僅別名到 --al-*，故結構/顏色都與系列共用契約一致。
+    系列已收斂為單一 Blueprint 風格（移除 Light）；hub 預留可動空間——portal 專屬的
+    workflow 階段色與少數區域變數集中在下方 :root，未來要微調 hub 外觀改這裡即可。
   -->
   <link rel="stylesheet" href="../packages/tokens/tokens.css" />
   <style>
-    /* 區域變數別名到系列共用 token（--al-*）；workflow 階段色為 portal 專屬，保留本地。 */
+    /* ─────────────────────────────────────────────────────────────────────
+       hub 可動空間（future headroom）：
+       上半部別名到系列共用 token（--al-*），跟著 .al-theme-blueprint 走，無需手調。
+       下半部是 *portal 專屬* 的可調色——workflow 四階段色 + accent 的 hover 底色。
+       未來要微調 hub 外觀（而不動其他四產品），改這幾行即可。
+       階段色刻意在藍圖底（#0f2e42）上保持高辨識度，與系列招牌琥珀 accent 共存。
+       ───────────────────────────────────────────────────────────────────── */
     :root {
+      /* 跟著主題包走（勿在此硬編色，改主題包即全站同步） */
       --bg: var(--al-bg);
       --panel: var(--al-surface);
       --panel-2: var(--al-surface-raised);
@@ -23,13 +32,15 @@
       --text: var(--al-text);
       --dim: var(--al-text-secondary);
       --accent: var(--al-accent);
-      --accent-dim: #1a3d25;
-      --understand: #39ff6a;
-      --analyze: #4aa8ff;
-      --compare: #ffb84a;
-      --verify: #c77dff;
       --mono: var(--al-font-mono);
       --sans: var(--al-font-body);
+
+      /* ▼ portal 專屬、可調（hub headroom）——只影響本頁 */
+      --accent-dim: color-mix(in srgb, var(--al-accent) 16%, transparent); /* primary 按鈕 hover 底 */
+      --understand: #6fd3a3; /* understand → web */
+      --analyze:    #6fb8d6; /* analyze    → dependency */
+      --compare:    #f2b84b; /* compare    → diff（＝藍圖 accent） */
+      --verify:     #c79be6; /* verify     → docsgap */
     }
     * { box-sizing: border-box; }
     body {
