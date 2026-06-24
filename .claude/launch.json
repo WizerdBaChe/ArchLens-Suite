@@ -30,6 +30,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "ArchLens-DocsGapTeller", "run", "dev:web", "--", "--port", "4184", "--strictPort"],
       "port": 4184
+    },
+    {
+      "name": "diff-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "ArchLens-DiffTeller", "run", "dev", "--", "--port", "4185", "--strictPort"],
+      "port": 4185
     }
   ]
 }
